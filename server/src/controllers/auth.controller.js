@@ -7,21 +7,21 @@ export const signup = async (req, res) => {
 
     try {
         if (!email || !password || !fullName) return res.status(400).json({
-            error: "All fields are required",
+            message: "All fields are required",
         });
 
         if (password.length < 8) return res.json({
-            error: "Password must be atleast 8 characters",
+            message: "Password must be atleast 8 characters",
         });
         
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) return res.status(400).json({
-            error: "Invalid email format",
+            message: "Invalid email format",
         });
 
         const existingUser = await User.findOne({ email });
         if (existingUser) return res.status(400).json({
-            error: "User with this mail already exists, please login",
+            message: "User with this mail already exists, please login",
         });
 
         const index = Math.floor(Math.random() * 100) + 1;
