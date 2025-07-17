@@ -130,7 +130,7 @@ export const onboard = async (req, res) => {
 
         const updatedUser = await User.findByIdAndUpdate(userId, {
             ...req.body,
-            isOnboarded: true,
+            isOnBoarded: true,
         }, { new: true });
 
         if (!updatedUser) return res.status(404).json({
@@ -158,4 +158,11 @@ export const onboard = async (req, res) => {
             message: "Internal server error",
         });
     }
+};
+
+export const getMe = async (req, res) => {
+    return res.status(200).json({
+        success: true,
+        user: req.user,
+    });
 };
