@@ -10,8 +10,22 @@ import ChatPage from "./pages/ChatPage.jsx";
 import OnboardingPage from "./pages/OnBoardingPage.jsx";
 
 import toast, { Toaster } from "react-hot-toast";
+import { useQuery } from '@tanstack/react-query';
+import { axiosInstance } from './lib/axiosInstance.js';
 
 const App = () => {
+
+  const { data } = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/auth/me");
+      return res.data;
+    },
+    retry: false,
+  });
+
+  console.log(data);
+
   return (
     <div className='h-screen' data-theme="night">
       <button onClick={() => toast.success("Hello")}>create tosast</button>
