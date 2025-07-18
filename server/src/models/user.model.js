@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
             ref: "User",
         }
     ],
+    location: {
+        type: String,
+        default: "",
+    }
 }, { timestamps: true });
 
 // prehook to hash password
