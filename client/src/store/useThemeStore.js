@@ -1,6 +1,9 @@
 import { create } from "zustand"
 
 export const useThemeStore = create((set) => ({
-  theme: "coffee",
-  setTheme: (theme) => set({ theme }),
+  theme: localStorage.getItem("greetify-theme") ||"coffee",
+  setTheme: (theme) => {
+    set({ theme });
+    localStorage.setItem("greetify-theme", theme);
+  },
 }));
