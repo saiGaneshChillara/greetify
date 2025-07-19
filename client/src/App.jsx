@@ -71,7 +71,9 @@ const App = () => {
           path='/chat' 
           element={
             isAuthenticated ? 
-            <ChatPage /> : 
+            <Layout>
+              <ChatPage />
+            </Layout> : 
             <Navigate to={"/login"} />
           }
         />
